@@ -1,0 +1,43 @@
+body {
+    /* background-image: url("images/reg.jpg"); */
+   
+  }
+  .compreg {
+    background-image: url("images/reg.jpg");    
+    background-size: cover;
+  
+  }
+  #log
+  {
+    /* margin-top:-500px; */
+    /* height: 800px; */
+    width: 400px;
+    margin-left: 40px;
+    border: 1px solid #9C9C9C;
+    background-color:lightgray;
+    opacity: .8;
+  }
+ input[type=text],input[type=password]{
+    box-sizing: border-box;
+    padding: 14px 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+ }
+ button{
+    box-sizing: border-box;
+    padding: 14px 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder
+}
+h3{
+    color: black;
+}
+h4{
+    color:coral;
+}

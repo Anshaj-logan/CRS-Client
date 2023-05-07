@@ -1,0 +1,39 @@
+body
+{
+  background-image: none;
+}
+  #log
+  {
+   
+    height: 400px;
+    width: 450px;
+    margin-left: 40px;
+    border: 1px solid #9C9C9C;
+    background-color:black;
+    opacity: .8;
+  }
+  
+ input[type=text],input[type=password]{
+    box-sizing: border-box;
+    padding: 14px 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+ }
+ button{
+    box-sizing: border-box;
+    padding: 14px 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder
+}
+h3{
+    color: black;
+}
+h4{
+    color:yellowgreen;
+}
