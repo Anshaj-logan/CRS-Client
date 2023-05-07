@@ -80,7 +80,7 @@ const Register = () => {
       setformErrors(validate(inputs))
     setIssubmit(true)
     if(Object.keys(formErrors).length === 0 && isSubmit){
-      axios.post('http://localhost:2000/',inputs).then((data)=>{
+      axios.post('http://localhost:2000/api/register/company',inputs).then((data)=>{
         console.log(data);
         // console.log(data.response.data.message);
         toast(data.data.message, {

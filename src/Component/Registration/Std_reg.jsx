@@ -60,7 +60,7 @@ const Std_reg = () => {
       error.backlog ="Enter Backlogs"
     }
     if(!values.cnf_password){
-      error.cnf_password ="Enter Your Department"
+      error.cnf_password ="Enter Password"
     }
    
     return error
@@ -78,9 +78,9 @@ const Std_reg = () => {
   
     const registerSubmit = (event) => {
       event.preventDefault();
-      if (inputs.password === inputs.confirmPassword) {
+      if (inputs.password === inputs.cnf_password) {
         // Passwords match, do something (e.g., submit form)
-        console.log('Passwords match');
+        setPasswordMatch(true);
       } else {
         // Passwords don't match, display an error message
         setPasswordMatch(false);
@@ -88,7 +88,7 @@ const Std_reg = () => {
       setformErrors(validate(inputs))
     setIssubmit(true)
     if(Object.keys(formErrors).length === 0 && isSubmit){
-      axios.post('http://localhost:2000/',inputs).then((data)=>{
+      axios.post('http://localhost:2000/api/register/student',inputs).then((data)=>{
         console.log(data);
         // console.log(data.response.data.message);
         toast(data.data.message, {
@@ -232,7 +232,7 @@ const Std_reg = () => {
         <span style={{color:"red"}} > {formErrors.username? formErrors.username :""}</span>
         <input
         name="username"
-        value={inputs.UserName || ""}
+        value={inputs.username || ""}
         onChange={setRegister} 
         onClick={()=>{setformErrors({...formErrors,username:""})}}
           type="text"
@@ -258,7 +258,7 @@ const Std_reg = () => {
         name="cnf_password"
         value={inputs.cnf_password || ""}
         onChange={setRegister} 
-        onClick={()=>{setformErrors({...formErrors,cnf_password:""})}}
+        onClick={()=>{setformErrors({...formErrors,cnf_password:""});setPasswordMatch(true)}}
           type="text"
           className="form-control"
           placeholder="Confirm Password"

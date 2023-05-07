@@ -1,7 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Companynav = () => {
+  const navigate = useNavigate()
+  const logout = ()=>{
+    localStorage.removeItem("name")
+    localStorage.removeItem("loginId")
+    localStorage.removeItem("role")
+    localStorage.removeItem("student_id")
+    navigate('/')
+
+  }
   return (
     <div>
          <div>
@@ -24,16 +33,16 @@ const Companynav = () => {
       {/* <ul class="sub-menu">
       <li><a href="#section2">Who we are?</a></li>
       <li><a href="#section3">What we do?</a></li>
-      <li><a href="#section3">How it works?</a></li>
+      <li><a href="#section3">How it works?</a></li> 
       <li><a href="https://templatemo.com/about" rel="sponsored" class="external">External URL</a></li>
     </ul> */}
       {/* <li><a href="#section4">Login</a></li> */}
       {/* <li><a href="#section5">Video</a></li> */}
       <li>
-        <a href="">
-        <Link to={'/posupload'}>
+        <a href="/posupload">
+       
        Upload Post
-        </Link>
+        
         </a>
       </li>
       {/* <li>
@@ -76,6 +85,11 @@ const Companynav = () => {
         </Link>
         </a>
       </li>
+      <li>
+            <a className="nav-link scrollto"  onClick={logout} >
+              Logout
+            </a>
+          </li>
     </ul>
   </nav>
 </header>

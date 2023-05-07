@@ -1,7 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Stdnav = () => {
+  const navigate = useNavigate()
+  const logout = ()=>{
+    localStorage.removeItem("name")
+    localStorage.removeItem("loginId")
+    localStorage.removeItem("role")
+    localStorage.removeItem("student_id")
+    navigate('/')
+
+  }
   return (
   
          <div>
@@ -133,6 +142,11 @@ const Stdnav = () => {
             
           </ul>
         </li>
+        <li>
+            <a className="nav-link scrollto"  onClick={logout} >
+              Logout
+            </a>
+          </li>
       {/* <li>
         <a href="">
         <Link to={'/applyforexam'}>
