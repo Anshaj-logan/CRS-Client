@@ -1,6 +1,73 @@
-import React from 'react'
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import {toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Updt = () => {
+  const [inputs, setInputs] = useState({});
+  const navigate = useNavigate()
+  const setRegister = (event) => {  
+    console.log(event.target);
+    const name = event.target.name;
+    const value = event.target.value;   
+    setInputs({...inputs, [name]: value });
+    console.log(inputs);
+  };
+  const login_id = localStorage.getItem("loginId")
+  useEffect(() => {
+   
+    axios
+      .get(
+        ` http://localhost:2000/api/student/view-student-profile/${login_id}`
+      )
+      .then((response) => {
+        if (response.data.success === true) {
+          setInputs(response.data.data);
+        }
+      });
+  }, []);
+  console.log("data", inputs);
+
+  const registerSubmit = (event) => {
+    event.preventDefault();
+  
+  //   setformErrors(validate(inputs))
+  // setIssubmit(true)
+  // if(Object.keys(formErrors).length === 0 && isSubmit){
+    axios.post(`http://localhost:2000/api/student/update-user-profile/${login_id}`,inputs).then((data)=>{
+      console.log(data);
+      // console.log(data.response.data.message);
+      toast(data.data.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      
+     
+    }).catch((err)=>{
+      console.log(err);
+      toast(err.response.data.message, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    })
+  
+  };
+
   return (
     <div id='pic' style={{ backgroundImage: "url(images/reg.jpg) "}}>
         <section className="section main-banner" id="top" data-section="section1">
@@ -15,25 +82,30 @@ const Updt = () => {
     <div className="col-sm-4" />
   </div>
      <div className="form-group" id="fm">
-      <form>
+     <ToastContainer />
+  <form onSubmit={registerSubmit}>
         
         <br />
         <div className="row">
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.name||''}
           className="form-control"
           placeholder="Name"
-          required=""
+          name="name"
         /></div>
         <br />
         
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.department||''}
           className="form-control"
           placeholder="Department"
-          required=""
+          name="department"
         />
         <br /></div>
         </div>
@@ -41,17 +113,21 @@ const Updt = () => {
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.email||''}
           className="form-control"
           placeholder="Email"
-          required=""
+          name="email"
         /></div>
         <br />
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.contact}
           className="form-control"
           placeholder="Contact"
-          required=""
+          name="contact"
         /></div>
         </div>
         <br />
@@ -62,17 +138,21 @@ const Updt = () => {
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.sslc_score}
           className="form-control"
           placeholder="SSLC Score"
-          required=""
+          name="sslc_score"
         /></div>
         <br />
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.plustwo_score}
           className="form-control"
           placeholder="Plus Two Score"
-          required=""
+        name="plustwo_score"
         /></div>
         </div>
       <br/>
@@ -82,21 +162,25 @@ const Updt = () => {
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.degree_score}
           className="form-control"
           placeholder="Degree Score "
-          required=""
+         name="degree_score"
         /></div>
         <br />
         <div className="col-sm-6">
         <input
           type="text"
+          onChange={setRegister}
+          value={inputs.backlogs||''}
           className="form-control"
           placeholder="Number of Backlogse"
-          required=""
+         name="backlogs"
         /></div>
         </div>
         <br />
-        <div className="row">
+        {/* <div className="row">
         <div className="col-sm-6">
         <input
           type="text"
@@ -113,11 +197,11 @@ const Updt = () => {
           required=""
         /></div>
         
-        </div>
+        </div> */}
         <br/>
         <div className="row">
         <p>
-          <button type="button" className="btn btn-success" id="upbtn">
+          <button type="submit" className="btn btn-success" id="upbtn">
             Update
           </button>
         </p>

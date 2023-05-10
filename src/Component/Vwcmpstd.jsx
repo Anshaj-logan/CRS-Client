@@ -1,6 +1,22 @@
-import React from 'react'
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Vwcmpstd = () => {
+  const [inputs, setInputs] = useState([]);
+  useEffect(() => {
+   
+    axios
+      .get(
+        ` http://localhost:2000/api/company/view-company`
+      )
+      .then((response) => {
+        if (response.data.success === true) {
+          setInputs(response.data.data);
+        }
+      });
+  }, []);
+  console.log("data", inputs);
   return (
     
       <div>
@@ -35,21 +51,17 @@ const Vwcmpstd = () => {
                     </tr>
                   </thead>
                   <tbody>
+                  {inputs.map((data,key)=>(
                     <tr>
-                    <td>Kodnest</td>
-                    <td>2019</td>
-                    <td>kodnest@gmail.com</td>
-                    <td>9845623745</td>
-                    <td>Calicut</td>
-                    </tr>
-                    <tr>
-                    <td>CoolMinds</td>
-                    <td>2020</td>
-                    <td>coolmind@gmail.com</td>
-                    <td>9455623745</td>
-                    <td>Kochi</td>
+                    <td>{data.company_name}</td>
+                    <td>{data.established}</td>
+                    <td>{data.email}</td>
+                    <td>{data.contact}</td>
+                    <td>{data.location}</td>
                     </tr>
                     
+                    
+                     ))}
                   </tbody>
                 </table>
               </div>
