@@ -50,6 +50,7 @@ const MainRouter = () => {
             < Route path='/uploadrslt' element={<Upload_Result/>}/>
             < Route path='/abc' element={<Std_update/>}/>
             < Route path='/posupload' element={<Upstcmp/>}/>
+            
 
 
 

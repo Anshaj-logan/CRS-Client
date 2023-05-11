@@ -105,7 +105,8 @@ const UpExmCmp = () => {
          {user.map((data,key)=>(
          <option value={data._id}> {data.name}    </option>
          ))}
-       </select></div></center>
+       </select>
+       </div></center>
         <br />
         </div><br/>
         <div className="row">
