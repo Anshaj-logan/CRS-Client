@@ -1,9 +1,24 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Vwnotstd = () => {
+  const [inputs, setInputs] = useState([]);
+  useEffect(() => {
+   
+    axios
+      .get(
+        `http://localhost:2000/api/company/view-exam`
+      )
+      .then((response) => {
+        if (response.data.success === true) {
+          setInputs(response.data.data);
+        }
+      });
+  }, []);
+  console.log("data", inputs);
   return (
     <div>
-        <div id="schedulhero"
+        <div id="Vwcmpny"
         // style={{ background:""}}
         >
             <br/>
@@ -26,29 +41,27 @@ const Vwnotstd = () => {
                 <table className="table table-hover table-bordered" id="sampleTable">
                   <thead>
                     <tr>
-                      <th>Notification</th>
+                      <th>Company</th>
                       <th>Date</th>
-                      
-                      
+                      <th>Time</th>
+                      <th>Link</th>
+                      {/* <th>Contact</th>
+                      <th>Location</th> */}
                     </tr>
                   </thead>
                   <tbody>
+                  {inputs.map((data,key)=>(
                     <tr>
-                      
-                      <td>Students who recieved kodnest mail should reply</td>
-                      <td>10/05/23</td>
-                      
-                      
+                    <td>{data.company_name}</td>
+                    <td>{data.date}</td>
+                    <td>{data.time}</td>
+                    <td>{data.link}</td>
+                    {/* <td>{data.contact}</td>
+                    <td>{data.location}</td> */}
                     </tr>
-                    <tr>
-                      
-                      <td>Students should bring their laptop</td>
-                      <td>21/04/23</td>
-                    </tr>
-                    <tr>
-                      <td>Meraki drive shifted to May 10</td>
-                      <td>1/05/23</td>
-                    </tr>
+                    
+                    
+                     ))}
                   </tbody>
                 </table>
               </div>
@@ -57,7 +70,7 @@ const Vwnotstd = () => {
           </div>
         </div></center>
       </div>
-    </div>
+    </div>  
   )
 }
 

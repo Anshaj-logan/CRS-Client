@@ -69,14 +69,14 @@ const Companynav = () => {
             
           </ul>
         </li>
-      <li>
+      {/* <li>
         <a href="">
         <Link to={'/ntfcn'}>
         
        Notifications
         </Link>
         </a>
-      </li>
+      </li> */}
       
       <li>
         <a href="">

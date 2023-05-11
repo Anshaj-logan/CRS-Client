@@ -121,13 +121,20 @@ const Stdnav = () => {
         </Link>
         </a>
       </li>
-      <li>
+      <li class="has-submenu"><a href="#section2">Notification</a>
+          <ul class="sub-menu">
+            <li><a href="/ViewNotification"> View Exam Notification</a></li>
+            <li><a href="/ViewNotification">  View Interview Notification</a></li>
+            
+          </ul>
+        </li>
+      {/* <li>
         <a href="">
         <Link to={'/ViewNotification'}>
       Notification
         </Link>
         </a>
-      </li>
+      </li> */}
       <li>
         <a href="">
         <Link to={'/ViewCompany'}>
@@ -138,7 +145,7 @@ const Stdnav = () => {
       <li class="has-submenu"><a href="#section2">Exam</a>
           <ul class="sub-menu">
             <li><a href=""> <Link to={'/applyforexam'}>Apply Exam</Link></a></li>
-            <li><a href=""> <Link to={'/viewResult'}> View Result</Link></a></li>
+            <li><a href=""> <Link to={''}> View Result</Link></a></li>
             
           </ul>
         </li>
